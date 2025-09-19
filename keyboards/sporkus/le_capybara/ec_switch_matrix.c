@@ -92,7 +92,7 @@ static inline void init_mux(void) {
 }
 
 void ecsm_config_init(void) {
-    eeconfig_read_kb_datablock(&ecsm_config);
+    eeconfig_read_kb_datablock(&ecsm_config, 0, sizeof(ecsm_config));
     for (int i = 0; i < EC_MATRIX_ROWS; i++) {
         for (int j = 0; j < EC_MATRIX_COLS; j++) {
             if (! ecsm_config.configured) {
@@ -115,7 +115,7 @@ void ecsm_config_update(void) {
     }
 
     uprintf("Writing current actuation points to presistent storage\n");
-    eeconfig_update_kb_datablock(&ecsm_config);
+    eeconfig_update_kb_datablock(&ecsm_config, 0, sizeof(ecsm_config));
     ecsm_print_debug();
 }
 
@@ -129,7 +129,7 @@ void ecsm_eeprom_clear(void) {
             ecsm_config.idle[i][j] = 0;
         }
     }
-    eeconfig_update_kb_datablock(&ecsm_config);
+    eeconfig_update_kb_datablock(&ecsm_config, 0, sizeof(ecsm_config));
     ecsm_is_tuning = 1e5;
 }
 
