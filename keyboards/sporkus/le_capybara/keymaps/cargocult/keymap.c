@@ -5,6 +5,14 @@
 #include QMK_KEYBOARD_H
 #include "../../rgb.c"
 #include "kc_mac.h"
+#include "../../../features/swapper.h"
+
+enum custom_keycodes {
+  NUMWORD = SAFE_RANGE,
+  CTL_TAB,
+  GUI_TAB,
+  KB_SAFE_RANGE  //use "KB_SAFE_RANGE" for keyboard specific codes
+};
 
 // Layer definitions
 enum layers {
@@ -41,9 +49,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
      // NAVIGATION LAYER (vim style)
      [NAV] = LAYOUT_3thumb(
-           _______,  _______,  _______,  _______,  _______,   _______,        _______,    MC_PWD,    MC_NWD,   _______,   _______,
+           _______,  _______,  _______,  _______,  _______,   _______,        GUI_TAB,    MC_PWD,    MC_NWD,   _______,   _______,
             MC_UND,   MC_CUT,   MC_CPY,   MC_PST,  _______,                   KC_LEFT,     KC_UP,   KC_DOWN,   KC_RGHT,   _______,
-           _______,  _______,  _______,  _______,  _______,                   _______,    MC_HME,    MC_END,   _______,   _______,
+           _______,  _______,  _______,  _______,  _______,                   CTL_TAB,    MC_HME,    MC_END,   _______,   _______,
                                _______,  _______,  _______,                    MC_DWD,    MC_SPT,   _______
      ),
 
@@ -83,3 +91,22 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
      [SYM]    = { ENCODER_CCW_CW(KC_MPLY, KC_MUTE) }
 };
 #endif
+
+
+bool swapper_ctl_tab_active = false;
+bool swapper_gui_tab_active = false;
+
+// return false to interrupt normal processing
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    update_swapper(
+        &swapper_gui_tab_active, KC_LGUI, KC_TAB, GUI_TAB,
+        keycode, record
+    );
+
+    update_swapper(
+        &swapper_ctl_tab_active, KC_LCTL, KC_TAB, CTL_TAB,
+        keycode, record
+    );
+
+    return true;
+}
