@@ -27,3 +27,7 @@
 #define MC_SPT LGUI(KC_SPC)
 #define MC_HME LGUI(KC_LEFT)
 #define MC_END LGUI(KC_RIGHT)
+
+#define MC_FWD LGUI(KC_RBRC)
+#define MC_BCK LGUI(KC_LBRC)
+
