@@ -7,6 +7,7 @@
 #include "kc_jetbrains.h"
 #include "kc_mac.h"
 #include "../../../features/swapper.h"
+#include "kc_tapdance.h"
 
 enum custom_keycodes {
   NUMWORD = SAFE_RANGE,
@@ -14,6 +15,7 @@ enum custom_keycodes {
   GUI_TAB,
   KB_SAFE_RANGE  //use "KB_SAFE_RANGE" for keyboard specific codes
 };
+
 
 // Layer definitions
 enum layers {
@@ -56,10 +58,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      ),
 
      [NAV] = LAYOUT_3thumb(
-           _______,  _______,  _______,  _______,  _______,     _______,       GUI_TAB,    MC_PWD,    MC_NWD,   _______,   _______,
-            MC_UND,   MC_CUT,   MC_CPY,   MC_PST,  _______,                    KC_LEFT,     KC_DOWN,   KC_UP,   KC_RGHT,   _______,
-           _______,  _______,  _______,  _______,  _______,                    CTL_TAB,    MC_HME,    MC_END,   _______,   _______,
-                               _______,  _______,  _______,                    MC_DWD,    MC_SPT,   _______
+            KC_F16,   KC_F17,   TD_MAX,TD_WIN_RIGHT,  _______,     _______,       GUI_TAB,    MC_PWD,    MC_NWD,   _______,   _______,
+            MC_UND,   MC_CUT,   MC_CPY,      MC_PST,  _______,                    KC_LEFT,     KC_DOWN,   KC_UP,   KC_RGHT,   _______,
+           _______,  _______,  _______,     _______,  _______,                    CTL_TAB,    MC_HME,    MC_END,   _______,   _______,
+                               _______,     _______,  _______,                    MC_DWD,    MC_SPT,   _______
      ),
 
      [FKEY] = LAYOUT_3thumb(
@@ -170,7 +172,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
     }
-    
+
 #ifdef CONSOLE_ENABLE
     uprintf("kc: %s\n", get_keycode_string(keycode));
 #endif
