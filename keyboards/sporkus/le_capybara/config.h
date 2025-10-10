@@ -23,14 +23,14 @@
 #define ACTUATION_OFFSET 150
 #define RELEASE_OFFSET 170
 #define DEFAULT_IDLE 500      // default value before tuning is completed
-#define ECSM_DEBUG            // enables printing ec config and ADC readings */
+// #define ECSM_DEBUG            // enables printing ec config and ADC readings */
 #define EC_MATRIX            // allows ec code to be enabled with ifdef
 
 // enables tuning ec config every power cycle, disable to reduce write cycle to flash
 #define ECSM_TUNE_ON_BOOT
 
 // --- Misc ---
-#define DEBUG_MATRIX_SCAN_RATE
+// #define DEBUG_MATRIX_SCAN_RATE
 
 // --- Pin configuration ---
 #define MATRIX_ROWS 5
