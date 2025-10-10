@@ -23,11 +23,8 @@ enum layers {
      SYM
 };
 
-// Thumb key definitions
-#define TT_NUM LT(NUMPAD, KC_ENT)
-#define TT_NAV LT(NAV, KC_ESC)
-#define TT_FKEY LT(FKEY, KC_BSPC)
-#define TT_SYM LT(SYM, KC_SPC)
+#include "combos.h"
+
 
 // Keymap using LAYOUT_3thumb
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
