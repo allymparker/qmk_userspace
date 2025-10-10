@@ -12,6 +12,8 @@ enum custom_keycodes {
   NUMWORD = SAFE_RANGE,
   CTL_TAB,
   GUI_TAB,
+  KC_MCPY,  // Custom keycode for copy (used in MC_CPY mod-tap)
+  KC_MPST,  // Custom keycode for paste (used in MC_PST mod-tap)
   KB_SAFE_RANGE  //use "KB_SAFE_RANGE" for keyboard specific codes
 };
 
@@ -155,6 +157,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         &swapper_ctl_tab_active, KC_LCTL, KC_TAB, CTL_TAB,
         keycode, record
     );
+
+    switch (keycode) {
+        case KC_MCPY:
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(LGUI(KC_C)); // Send Cmd+C on tap
+                return false;
+            }
+            break;
+        case KC_MPST:
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(LGUI(KC_V)); // Send Cmd+V on tap
+                return false;
+            }
+            break;
+    }
 
     return true;
 }

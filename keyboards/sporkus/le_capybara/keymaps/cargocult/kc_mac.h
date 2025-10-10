@@ -6,8 +6,8 @@
 
 // Cut, copy, paste, undo
 #define MC_CUT LGUI(KC_X)
-#define MC_CPY LGUI_T(LGUI(KC_C))
-#define MC_PST LSFT_T(LGUI(KC_V))
+#define MC_CPY LGUI_T(KC_MCPY)  
+#define MC_PST LSFT_T(KC_MPST)  
 #define MC_UND LGUI(KC_Z)
 
 // Home row mods
